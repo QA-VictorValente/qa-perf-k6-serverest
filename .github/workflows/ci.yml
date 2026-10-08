@@ -28,10 +28,7 @@ jobs:
         uses: grafana/setup-k6-action@v1
 
       - name: Run k6 Smoke Test
-        uses: grafana/run-k6-action@v1
-        with:
-          path: src/scenarios/smoke-test.js
-          flags: --summary-trend-stats="avg,min,med,max,p(90),p(95),p(99)"
+        run: k6 run src/scenarios/smoke-test.js
 
       - name: Update Activity Log
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'

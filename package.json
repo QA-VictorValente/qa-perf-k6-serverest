@@ -1,0 +1,24 @@
+{
+  "name": "04-perf-k6",
+  "version": "1.0.0",
+  "description": "Performance & Load Testing with Grafana k6 against ServeRest API",
+  "main": "index.js",
+  "scripts": {
+    "test": "k6 run src/scenarios/smoke-test.js",
+    "test:smoke": "k6 run src/scenarios/smoke-test.js",
+    "test:load": "k6 run src/scenarios/load-test.js",
+    "test:stress": "k6 run src/scenarios/stress-test.js"
+  },
+  "keywords": [
+    "k6",
+    "grafana-k6",
+    "performance-testing",
+    "load-testing",
+    "stress-testing",
+    "serverest",
+    "sdet",
+    "qa"
+  ],
+  "author": "Victor",
+  "license": "MIT"
+}

@@ -1,0 +1,54 @@
+name: Performance Tests CI & Scheduled Smoke (Grafana k6 - ServeRest)
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    # Executa a cada 8 horas (06:00, 14:00, 22:00 UTC)
+    - cron: '0 6,14,22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  performance-tests-and-log:
+    name: Run k6 Performance Smoke & Record Activity
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Grafana k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Run k6 Smoke Test
+        uses: grafana/run-k6-action@v1
+        with:
+          path: src/scenarios/smoke-test.js
+          flags: --summary-trend-stats="avg,min,med,max,p(90),p(95),p(99)"
+
+      - name: Update Activity Log
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          mkdir -p .github/logs
+          NOW=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          echo "- **Execução:** $NOW | **Status:** ✅ PASSED | **Módulo:** Grafana k6 Performance" >> .github/logs/daily-runs.md
+
+      - name: Commit and Push Activity
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/logs/daily-runs.md
+          if git diff --staged --quiet; then
+            echo "Nenhuma alteração a commitar."
+          else
+            git commit -m "chore(ci): scheduled performance smoke run [$(date -u +'%Y-%m-%d %H:%M UTC')]"
+            git push origin HEAD:${{ github.ref }}
+          fi

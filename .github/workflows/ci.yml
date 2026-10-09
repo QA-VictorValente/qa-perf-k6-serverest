@@ -40,12 +40,12 @@ jobs:
       - name: Commit and Push Activity
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "QA-VictorValente"
+          git config --global user.email "victorvalente456@gmail.com"
           git add .github/logs/daily-runs.md
           if git diff --staged --quiet; then
             echo "Nenhuma alteração a commitar."
           else
-            git commit -m "chore(ci): scheduled performance smoke run [$(date -u +'%Y-%m-%d %H:%M UTC')]"
+            git commit --author="QA-VictorValente <victorvalente456@gmail.com>" -m "chore(ci): scheduled performance smoke run [$(date -u +'%Y-%m-%d %H:%M UTC')]"
             git push origin HEAD:${{ github.ref }}
           fi

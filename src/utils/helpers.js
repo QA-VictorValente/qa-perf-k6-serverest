@@ -28,5 +28,6 @@ export function logIfFailed(res, description) {
     console.warn(`[WARN] ${description} returned status ${res.status}: ${res.body}`);
   } else {
     errorRate.add(false);
+    successLogins.add(1);
   }
 }

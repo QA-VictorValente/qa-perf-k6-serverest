@@ -12,9 +12,9 @@
     "test:smoke:local": "k6 run -e BASE_URL=http://localhost:3001 src/scenarios/smoke-test.js",
     "test:load:local": "k6 run -e BASE_URL=http://localhost:3001 src/scenarios/load-test.js",
     "test:stress:local": "k6 run -e BASE_URL=http://localhost:3001 src/scenarios/stress-test.js",
-    "test:dashboard": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/smoke-test.js\" --results summary.json --framework \"k6 Smoke Performance\" --open",
-    "test:load:dashboard": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/load-test.js\" --results summary.json --framework \"k6 Load Performance\" --open",
-    "test:stress:dashboard": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/stress-test.js\" --results summary.json --framework \"k6 Stress Test\" --open",
+    "test:dashboard": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/smoke-test.js\" --results summary.json --build --output ./reports/smoke-dashboard.html --framework \"k6 Smoke Test\" --open",
+    "test:load:dashboard": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/load-test.js\" --results summary.json --build --output ./reports/load-dashboard.html --framework \"k6 Load Performance\" --open",
+    "test:stress:dashboard": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/stress-test.js\" --results summary.json --build --output ./reports/stress-dashboard.html --framework \"k6 Stress Test\" --open",
     "dashboard:report": "qa-dashboard --build --results summary.json --framework \"k6 Performance\" --output ./reports/k6-dashboard.html --open"
   },
   "keywords": [

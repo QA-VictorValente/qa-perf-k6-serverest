@@ -4,14 +4,14 @@
   "description": "Performance & Load Testing with Grafana k6 against ServeRest API",
   "main": "index.js",
   "scripts": {
-    "test": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/smoke-test.js\" --results summary.json --build --output ./reports/smoke-report.html --framework \"k6 Smoke\"",
-    "test:smoke": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/smoke-test.js\" --results summary.json --build --output ./reports/smoke-report.html --framework \"k6 Smoke\"",
-    "test:load": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/load-test.js\" --results summary.json --build --output ./reports/load-report.html --framework \"k6 Load Performance\"",
-    "test:stress": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/stress-test.js\" --results summary.json --build --output ./reports/stress-report.html --framework \"k6 Stress Test\"",
+    "test": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/smoke-test.js\" --results summary.json --build --output ./reports/smoke-report.html --framework \"k6 Smoke\" --open",
+    "test:smoke": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/smoke-test.js\" --results summary.json --build --output ./reports/smoke-report.html --framework \"k6 Smoke\" --open",
+    "test:load": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/load-test.js\" --results summary.json --build --output ./reports/load-report.html --framework \"k6 Load Performance\" --open",
+    "test:stress": "qa-dashboard --run \"k6 run --summary-export=summary.json src/scenarios/stress-test.js\" --results summary.json --build --output ./reports/stress-report.html --framework \"k6 Stress Test\" --open",
     "serverest": "serverest -p 3001 --nodoc",
-    "test:smoke:local": "qa-dashboard --run \"k6 run -e BASE_URL=http://localhost:3001 --summary-export=summary.json src/scenarios/smoke-test.js\" --results summary.json --build --output ./reports/smoke-local-report.html",
-    "test:load:local": "qa-dashboard --run \"k6 run -e BASE_URL=http://localhost:3001 --summary-export=summary.json src/scenarios/load-test.js\" --results summary.json --build --output ./reports/load-local-report.html",
-    "test:stress:local": "qa-dashboard --run \"k6 run -e BASE_URL=http://localhost:3001 --summary-export=summary.json src/scenarios/stress-test.js\" --results summary.json --build --output ./reports/stress-local-report.html"
+    "test:smoke:local": "qa-dashboard --run \"k6 run -e BASE_URL=http://localhost:3001 --summary-export=summary.json src/scenarios/smoke-test.js\" --results summary.json --build --output ./reports/smoke-local-report.html --open",
+    "test:load:local": "qa-dashboard --run \"k6 run -e BASE_URL=http://localhost:3001 --summary-export=summary.json src/scenarios/load-test.js\" --results summary.json --build --output ./reports/load-local-report.html --open",
+    "test:stress:local": "qa-dashboard --run \"k6 run -e BASE_URL=http://localhost:3001 --summary-export=summary.json src/scenarios/stress-test.js\" --results summary.json --build --output ./reports/stress-local-report.html --open"
   },
   "keywords": [
     "k6",

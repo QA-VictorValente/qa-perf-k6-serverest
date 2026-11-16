@@ -7,7 +7,11 @@
     "test": "k6 run src/scenarios/smoke-test.js",
     "test:smoke": "k6 run src/scenarios/smoke-test.js",
     "test:load": "k6 run src/scenarios/load-test.js",
-    "test:stress": "k6 run src/scenarios/stress-test.js"
+    "test:stress": "k6 run src/scenarios/stress-test.js",
+    "serverest": "serverest -p 3001 --nodoc",
+    "test:smoke:local": "k6 run -e BASE_URL=http://localhost:3001 src/scenarios/smoke-test.js",
+    "test:load:local": "k6 run -e BASE_URL=http://localhost:3001 src/scenarios/load-test.js",
+    "test:stress:local": "k6 run -e BASE_URL=http://localhost:3001 src/scenarios/stress-test.js"
   },
   "keywords": [
     "k6",
@@ -20,5 +24,8 @@
     "qa"
   ],
   "author": "Victor",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "serverest": "^2.29.7"
+  }
 }

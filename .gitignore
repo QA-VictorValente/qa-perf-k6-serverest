@@ -3,3 +3,5 @@ node_modules/
 .env
 *.json
 !package.json
+reports/
+dist/
